@@ -26,7 +26,15 @@ color: #fff;
 text-decoration: none;
   }
   
-  .jumbotron h1, h2 {
+  .jumbotron h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30 px;
+    letter-spacing: -1px;
+    font-weight: bold;
+  }
+  
+   .jumbotron h2 {
     color: #fff;
     text-align: center;
     margin-bottom: 30 px;
@@ -51,6 +59,7 @@ text-decoration: none;
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+  padding-top: 10px;
 }
 
 
