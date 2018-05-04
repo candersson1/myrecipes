@@ -2,11 +2,12 @@ require 'test_helper'
 
 class RecipesEditTest < ActionDispatch::IntegrationTest
   def setup
-    @user = Chef.create!(chefname: "Chris", email: "candersson@klarsolutions.com", password: "password", password_confirmation: "password")
-    @recipe = Recipe.create(name: "Vegetbale sautee", description: "great veggie sautee", chef: @user)
+    @chef = Chef.create!(chefname: "Chris", email: "candersson@klarsolutions.com", password: "password", password_confirmation: "password")
+    @recipe = Recipe.create(name: "Vegetbale sautee", description: "great veggie sautee", chef: @chef)
   end
 
   test "reject invalid recipe update" do
+    sign_in_as(@chef, "password")
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     patch recipe_path(@recipe), params: {recipe: {name: " ", description: "some description"}}
@@ -16,6 +17,7 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "succesfully edit a recipe" do
+     sign_in_as(@chef, "password")
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     updated_name = "updated recipe name"
